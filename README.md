@@ -1,5 +1,7 @@
 # 🐺📖 Interactive Storytelling with Chainlit & Mistral
 
+This is a quick test with committing changes.
+
 Welcome to your **interactive storytelling adventure**! 🚀 This project lets you explore a rich fantasy world where you interact with a **magical crow**, a **mercenary wolf**, and a **mysterious narrator**. You can influence the story by chatting with these characters and making choices!
 
 ## ✨ Features
