@@ -1,6 +1,11 @@
-# 🐺📖 Interactive Storytelling with Chainlit & Mistral
+Below is the original template README, which we used extensively in setting up and expanding this project.
 
-This is a quick test with committing changes.
+Our adventure is about the player waking up in an ominous mansion with no idea how they got there, accompanied only by the voices that they hear over a walkie-talkie that was left behind for them.
+To leave, they need to find three keys scattered throughout the mansion and bring them back to the front door. Each of the three voices from the walkie-talkie have their own strengths and weaknesses, and none of them trust one another. The player must sort through the information they can get and avoid the dangers of the mansion to escape!
+
+
+
+# 🐺📖 Interactive Storytelling with Chainlit & Mistral
 
 Welcome to your **interactive storytelling adventure**! 🚀 This project lets you explore a rich fantasy world where you interact with a **magical crow**, a **mercenary wolf**, and a **mysterious narrator**. You can influence the story by chatting with these characters and making choices!
 
