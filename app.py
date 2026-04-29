@@ -4,10 +4,10 @@ import json
 from typing import List, Tuple
 from cast_of_characters import characters, Character
 from story import story_opening
-# Student can add NLTK imports here
-# import nltk
-# from nltk.tokenize import sent_tokenize, word_tokenize
-# from nltk.sentiment import SentimentIntensityAnalyzer
+
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 # Initialize conversation context and characters
 conversation_context: List[str] = []
