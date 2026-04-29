@@ -9,7 +9,6 @@ import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-# Initialize conversation context and characters
 conversation_context: List[str] = []
 
 # Constants 
@@ -18,47 +17,73 @@ MAX_CONTEXT_MESSAGES = 10
 MAX_TOKENS = 4096
 
 def get_character_from_message(message: str) -> Tuple[Character, str]:
-    """Extract character mention and clean message"""
     for char_name in characters.keys():
         if f"@{char_name}" in message.lower():
             return characters[char_name], message.replace(f"@{char_name}", "").strip()
-    return characters["narrator"], message.strip()
+    return characters["Narrator"], message.strip()
 
 def analyze_user_message(message: str) -> str:
-    """
-    STUDENT EXERCISE OPPORTUNITY:
-    Analyze user message before processing
-    Ideas:
-    - Check sentiment of user message
-    - Count words/sentences
-    - Identify key topics or entities
-    - Tag parts of speech
-    """
+ 
+    sia = SentimentIntensityAnalyzer()
+    
+    sentiment_scores = sia.polarity_scores(message)
+
+    if sentiment_scores['compound'] >= 0.05:
+        sentiment_label = "positive"
+    elif sentiment_scores['compound'] <= -0.05:
+        sentiment_label = "negative"
+    else:
+        sentiment_label = "neutral"
+
+    print(f"User message sentiment: {sentiment_label} (score: {sentiment_scores['compound']})")
+
+    words = word_tokenize(message)
+    word_count = len(words)
+    print(f"User message word count: {word_count}")
+    
     return message
 
 def analyze_generated_text(text: str) -> str:
-    """
-    STUDENT EXERCISE OPPORTUNITY:
-    Analyze generated text before processing
-    Ideas:
-    - Check sentiment of generated text
-    - Count words/sentences
-    - Identify key topics or entities
-    - Tag parts of speech
-    """
+
+    sia = SentimentIntensityAnalyzer()
+
+    sentiment_scores = sia.polarity_scores(text)
+
+    if sentiment_scores['compound'] >= 0.05:
+        sentiment_label = "positive"
+    elif sentiment_scores['compound'] <= -0.05:
+        sentiment_label = "negative"
+    else:
+        sentiment_label = "neutral"
+    
+    # Log the sentiment analysis (optional: can be used for debugging)
+    print(f"Generated text sentiment: {sentiment_label} (score: {sentiment_scores['compound']})")
+    
+    # Count words using NLTK word_tokenize
+    words = word_tokenize(text)
+    word_count = len(words)
+    print(f"Generated text word count: {word_count}")
+    
     return text
 
 def process_generated_text(text: str) -> str:
-    """
-    STUDENT EXERCISE OPPORTUNITY:
-    Process the LLM generated text before display
-    Ideas:
-    - Add paragraph breaks after N sentences
-    - Convert negative sentiment to positive
-    - Add emphasis to key words
-    - Format dialogue with quotes
-    - Replace words with synonyms
-    """
+    sia = SentimentIntensityAnalyzer()
+
+    sentiment_scores = sia.polarity_scores(text)
+    
+    if sentiment_scores['compound'] >= 0.05:
+        sentiment_label = "positive"
+    elif sentiment_scores['compound'] <= -0.05:
+        sentiment_label = "negative"
+    else:
+        sentiment_label = "neutral"
+
+    print(f"Processed text sentiment: {sentiment_label} (score: {sentiment_scores['compound']})")
+
+    words = word_tokenize(text)
+    word_count = len(words)
+    print(f"Processed text word count: {word_count}")
+    
     return text
 
 @cl.on_chat_start
@@ -162,4 +187,6 @@ Conversation History:
     except Exception as e:
         error_msg = f"Unexpected error: {str(e)}"
         print(error_msg)
+        await cl.Message(content=error_msg).send()
+
         await cl.Message(content=error_msg).send()
