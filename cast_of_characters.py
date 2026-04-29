@@ -39,7 +39,7 @@ class Character:
     
 characters = {
     "Narrator": Character(
-        "Narrator", 5, 5, 100, 
+        "Narrator", 9, 9, 200, 
         lambda: random.randint(1,6),
         """You are a mysterious storyteller who exists beyond the story, with the goal of fascilitating interactions between the Trickster, the Follower, the Seeker,
         and the player character (referred to as "you" and whose input comes preceded by 'User :'). Set scenes with sensory details, describe the 
