@@ -162,16 +162,7 @@ Conversation History:
         # Process complete response
         if accumulated_response.strip():
             
-            
-
-            # STUDENT EXERCISE OPTION: Further analyze response characteristics
-            # Example analyses:
-            # - Count words/sentences
-            # - Measure sentiment
-            # - Extract key phrases
-            # - Identify named entities
             analyzed_message = analyze_generated_text(accumulated_response.strip())
-            # STUDENT EXERCISE: Process full response
             processed_response = process_generated_text(analyzed_message)
             
 
