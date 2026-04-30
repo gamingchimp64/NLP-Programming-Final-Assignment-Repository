@@ -230,3 +230,11 @@ def to_pig_latin(text: str) -> str:
     pig_text = " ".join(pig_tokens)
 
     return f"{pig_text} ({text})"
+    # Check if character is the Butcher
+if Character == 'Butcher':
+    processed_response = to_pig_latin(processed_response)
+    # Add the processed response to the context
+    conversation_context.append(processed_response)  
+
+# The session continues and other characters are processed accordingly
+await msg.send()
