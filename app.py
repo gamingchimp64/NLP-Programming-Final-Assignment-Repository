@@ -181,3 +181,52 @@ Conversation History:
         await cl.Message(content=error_msg).send()
 
         await cl.Message(content=error_msg).send()
+
+#PIG LATIN SECTION BY BRYTON
+VOWELS = "aeiouAEIOU"
+
+
+def to_pig_latin_word(word: str) -> str:
+    """Convert a single word to Pig Latin."""
+    # Preserve punctuation at the end
+    suffix = ""
+    while word and not word[-1].isalpha():
+        suffix = word[-1] + suffix
+        word = word[:-1]
+
+    if not word or not word[0].isalpha():
+        return word + suffix
+
+    is_capitalized = word[0].isupper()
+    lower = word.lower()
+
+    if lower[0] in VOWELS:
+        pig = lower + "yay"
+    else:
+        # Find the first vowel
+        first_vowel = next((i for i, c in enumerate(lower) if c in VOWELS), None)
+        if first_vowel is None:
+            pig = lower + "ay"
+        else:
+            pig = lower[first_vowel:] + lower[:first_vowel] + "ay"
+
+    if is_capitalized:
+        pig = pig.capitalize()
+
+    return pig + suffix
+
+
+def to_pig_latin(text: str) -> str:
+    """
+    Convert a full text string to Pig Latin using NLTK tokenization.
+    Appends the original text in parentheses at the end.
+    """
+    tokens = word_tokenize(text)
+
+    pig_tokens = []
+    for token in tokens:
+        pig_tokens.append(to_pig_latin_word(token))
+
+    pig_text = " ".join(pig_tokens)
+
+    return f"{pig_text} ({text})"
